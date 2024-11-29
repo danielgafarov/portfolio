@@ -11,6 +11,7 @@ import {
     SidebarMenuItem,
 } from "@/components/ui/sidebar"
 import { FolderCode, Home, User } from 'lucide-react';
+import { NavLink } from "react-router";
 const items = [
     {
         title: "Home",
@@ -40,10 +41,10 @@ export function AppSidebar() {
                         {items.map((item) => (
                             <SidebarMenuItem key={item.title}>
                                 <SidebarMenuButton asChild>
-                                    <a href={item.url}>
+                                    <NavLink to={item.url}>
                                         <item.icon />
                                         <span>{item.title}</span>
-                                    </a>
+                                    </NavLink>
                                 </SidebarMenuButton>
                             </SidebarMenuItem>
                         ))}
