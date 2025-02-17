@@ -19,9 +19,10 @@ export default function Project() {
   }, [data]);
   if (isLoading) return <div>Loading...</div>;
   if (error) return <div>Error: {error.message}</div>;
+  const text = Buffer.from(data.readme, "base64").toString()
   return (
     <>
-      <Markdown rehypePlugins={[rehypeRaw]} className="pl-2 flex gap-2">{Buffer.from(data.readme, "base64").toString()}</Markdown>
+      <Markdown rehypePlugins={[rehypeRaw]} className="pl-3">{text}</Markdown>
       <div className="pl-2 flex gap-2">
         <SyntaxHighlighter
           className="rounded-md"
@@ -32,7 +33,7 @@ export default function Project() {
         >
           {Buffer.from(data.code, "base64").toString()}
         </SyntaxHighlighter>
-        <Textarea style={{fontSize:"16px", letterSpacing:"3px"}} disabled>{result}</Textarea>
+        <Textarea style={{fontSize:"16px", letterSpacing:"3px"}} value={result} disabled></Textarea>
       </div>
     </>
   );
