@@ -21,25 +21,11 @@ app.use("/api",repoRoutes)
 app.use("/api",configRoutes)
 app.use("/api",executionRoutes)
 
-
 const port = 3000;
 
 app.use((req, res, next) => {
   console.log("Time:", Date.now());
   next();
-});
-
-
-
-app.get("/api", (req, res) => {
-  //const child = execFile("./main.exe",(error, stdout, stderr) => {
-  //if (error) {
-  //throw error;
-  //}
-  res.json({
-    res: "test",
-  });
-  //});
 });
 
 app.listen(port, () => {

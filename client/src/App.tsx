@@ -7,12 +7,7 @@ import Home from "./components/home";
 import Project from "./components/project";
 import Projects from "./components/projects";
 
-
-
-
 function App() {
-  
-  
   return (
     <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
       <SidebarProvider>
@@ -22,10 +17,10 @@ function App() {
           <Routes>
             <Route index element={<Home />} />
             <Route path="projects">
-              <Route index element={<Projects/>}></Route>
-              <Route path=":id" element={<Project/>}></Route>
+              <Route index element={<Projects />}></Route>
+              <Route path=":id" element={<Project />}></Route>
             </Route>
-            <Route path="about" element={<About />} />  
+            <Route path="about" element={<About />} />
           </Routes>
         </main>
       </SidebarProvider>

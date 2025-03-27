@@ -1,14 +1,15 @@
 const { execFile, spawn } = require("node:child_process");
-const fs = require("fs");
-const path = require("path");
+const { readJSON } = require("../utils/readJSON");
 
-const getResult = async (req, res) => {
-  const python = spawn("python3", ["./controllers/8queens.py"]);
+const getExec = async (req, res) => {
+  const entryPoints = readJSON("/static/exec.json")
+  const id = req.params.id
+  const python = spawn("python3", [`./controllers/programs/${entryPoints[id]}`]);
   let data = "";
   for await (const chunk of python.stdout) {
     data += chunk;
   }
-    res.send({data});
+  res.send({ data });
 };
 
-module.exports = { getResult };
+module.exports = { getExec };

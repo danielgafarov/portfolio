@@ -14,7 +14,7 @@ import {
 import useIconMap from "@/hooks/useIconMap";
 import useRepos from "@/hooks/useRepos";
 import { Collapsible, CollapsibleContent } from "@radix-ui/react-collapsible";
-import { FolderCode, Home, User } from "lucide-react";
+import { FolderCode, Home, Scale } from "lucide-react";
 import { NavLink } from "react-router";
 import * as LucideIcons from "lucide-react";
 
@@ -31,9 +31,9 @@ const items = [
     projects: [],
   },
   {
-    title: "Über mich",
-    url: "/about",
-    icon: User,
+    title: "Impressum",
+    url: "/impressum",
+    icon: Scale,
   },
 ];
 
@@ -43,12 +43,12 @@ export function AppSidebar() {
   const projects =
     data && iconMap
       ? data?.map((repo) => {
-          return {
-            title: repo.name,
-            icon: LucideIcons[iconMap[repo.name] as keyof typeof LucideIcons],
-            id: repo.name,
-          };
-        })
+        return {
+          title: repo.name,
+          icon: LucideIcons[iconMap[repo.name] as keyof typeof LucideIcons],
+          id: repo.name,
+        };
+      })
       : [];
   items[1].projects = projects;
   return (

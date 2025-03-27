@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
-const {getResult} = require("../controllers/executionController")
+const {getExec} = require("../controllers/executionController")
 
-router.get("/result",getResult)
+router.get("/exec/:id",getExec)
 
 module.exports = router
