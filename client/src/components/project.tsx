@@ -29,32 +29,33 @@ export default function Project() {
   return (
 
     <>
-
       <Tabs defaultValue="description">
-        <div className="flex">
-          <TabsList className="">
-            <TabsTrigger value="description"><BookOpenText />Projektbeschreibung</TabsTrigger>
-            <TabsTrigger value="code"><Play />Code ausführen</TabsTrigger>
+        <div className="flex flex-col ">
+          <TabsList className="self-center sticky top-5 m-5">
+            <TabsTrigger value="description"><BookOpenText className="w-4 h-4 mr-2" />Projektbeschreibung</TabsTrigger>
+            <TabsTrigger value="code"><Play className="w-4 h-4 mr-2" />Code ausführen</TabsTrigger>
           </TabsList>
+          <TabsContent value="description">
+            <Markdown rehypePlugins={[rehypeRaw]} className="pl-3">{text}</Markdown>
+          </TabsContent>
+          <TabsContent value="code">
+            <div className="flex">
+            <Button className="bg-green-500 mr-auto ml-auto" onClick={() => refetch()}><Play className="w-4 h-4 mr-2" />Code ausführen</Button>
+            </div>
+            <div className="pl-2 flex gap-2">
+              <SyntaxHighlighter
+                className="rounded-md"
+                style={vs2015}
+                customStyle={{ width: "100%" }}
+                language={repo.lang}
+                wrapLongLines="true"
+              >
+                {Buffer.from(repo.code, "base64").toString()}
+              </SyntaxHighlighter>
+              <Textarea style={{ fontSize: "16px", letterSpacing: "3px" }} value={result} disabled></Textarea>
+            </div>
+          </TabsContent>
         </div>
-        <TabsContent value="description">
-          <Markdown rehypePlugins={[rehypeRaw]} className="pl-3">{text}</Markdown>
-        </TabsContent>
-        <TabsContent value="code">
-          <Button onClick={() => refetch()}>test</Button>
-          <div className="pl-2 flex gap-2">
-            <SyntaxHighlighter
-              className="rounded-md"
-              style={vs2015}
-              customStyle={{ width: "100%" }}
-              language={repo.lang}
-              wrapLongLines="true"
-            >
-              {Buffer.from(repo.code, "base64").toString()}
-            </SyntaxHighlighter>
-            <Textarea style={{ fontSize: "16px", letterSpacing: "3px" }} value={result} disabled></Textarea>
-          </div>
-        </TabsContent>
       </Tabs>
     </>
   );

@@ -40,13 +40,16 @@ export default function Home() {
       <div className="">Willkommen auf meiner Website! Hier kann man sich einige meiner Projekte ansehen und diese ausführen.<br />Derzeit ist die Auswahl an Projekten gering, jedoch habe ich in Zukunft vor, mehr meiner Projekte einzupflegen.</div>
       <div className="flex justify-evenly">
         {items.map((item) => (
-          <Card>
-            <CardHeader>
-              <NavLink to={item.url} target={item.target} rel={item.rel} className="flex gap-2"><item.icon />
-                <span>{item.title}</span>
-              </NavLink>
-            </CardHeader>
-          </Card>
+          <NavLink to={item.url} target={item.target} rel={item.rel}>
+            <Card>
+              <CardHeader>
+                <div className="flex gap-2">
+                  <item.icon />
+                  <span>{item.title}</span>
+                </div>
+              </CardHeader>
+            </Card>
+          </NavLink>
         ))}
       </div>
     </div>
