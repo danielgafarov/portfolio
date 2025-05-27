@@ -1,18 +1,17 @@
-import { useQuery } from "@tanstack/react-query";
+import { useMutation} from "@tanstack/react-query";
 import axios from "axios";
 
 
-const getExec = async (id:string) => {
-  const response = await axios.get(`http://localhost:3000/api/exec/${id}`);
+const getExec = async (params) => {
+  const response = await axios.get(`http://localhost:3000/api/exec`,{params: {params}});
   return response.data.data;
 };
 
-const useExec = (id:string | undefined) => {
-  return useQuery(
+const useExec = () => {
+  return useMutation(
     {
-      queryFn: () => getExec(id!),
-      queryKey: ["execResult"],
-      staleTime: 1000 * 5, enabled:false
+      mutationFn: ({params} : {params: unknown}) => getExec(params),
+      onSuccess: () => console.log("success")
     })
 };
 

@@ -1,6 +1,8 @@
 const { Octokit } = require("octokit");
 const { readJSON } = require("../utils/readJSON");
 
+
+
 class HttpError extends Error {
   constructor(status, message) {
     super(message)
@@ -62,7 +64,7 @@ const getRepo = async (req, res) => {
         },
       }
     );
-    res.send({ name: id, code: code.content, readme: readme.content, lang: filteredProject.lang })
+    res.send({ name: id, code: code.content, readme: readme.content, lang: filteredProject.lang, params: filteredProject.params })
       ;
   } catch (error) {
     console.log(error)

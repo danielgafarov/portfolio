@@ -200,16 +200,17 @@ def backtracking_search(csp):
         #print(result)
     #print("Number of Solutions found: " + str(len(results)))
 
-        
-#ga_queens = queens_problem(create_population(1000), genetic_algorithm)
-#ga_queens.solve()
-x = [1,2,3,4,5,6,7,8]
-domains = {}
-for var in x:
-    domains[var] = [1,2,3,4,5,6,7,8]
-queens = csp(x,domains,consistent)
-backtrack_queens = queens_problem(queens,backtracking_search)
-backtrack_queens.solve()
-print("yoooooooooooo")
-sys.stdout.flush()
+
+if sys.argv[1] == 'true':
+    ga_queens = queens_problem(create_population(1000), genetic_algorithm)
+    ga_queens.solve()
+else:
+    x = [1,2,3,4,5,6,7,8]
+    domains = {}
+    for var in x:
+        domains[var] = [1,2,3,4,5,6,7,8]
+    queens = csp(x,domains,consistent)
+    backtrack_queens = queens_problem(queens,backtracking_search)
+    backtrack_queens.solve()
+    print ('argument list', sys.argv)
 #print(backtracking_search(queens))

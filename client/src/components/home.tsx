@@ -40,7 +40,7 @@ export default function Home() {
       <div className="">Willkommen auf meiner Website! Hier kann man sich einige meiner Projekte ansehen und diese ausführen.<br />Derzeit ist die Auswahl an Projekten gering, jedoch habe ich in Zukunft vor, mehr meiner Projekte einzupflegen.</div>
       <div className="flex justify-evenly">
         {items.map((item) => (
-          <NavLink to={item.url} target={item.target} rel={item.rel}>
+          <NavLink to={item.url} target={item.target} rel={item.rel} key={item.title}>
             <Card>
               <CardHeader>
                 <div className="flex gap-2">

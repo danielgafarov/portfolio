@@ -1,12 +1,13 @@
 [
-    {
-        "name": "8queens",
-        "code": "8queens.py",
-        "lang": "python"
-    },
-    {
-        "name": "portfolio",
-        "code": "client/src/App.tsx",
-        "lang": "typescript"
-    }
+  {
+    "name": "8queens",
+    "code": "8queens.py",
+    "lang": "python",
+    "params": [{ "name": "genetic", "type": "boolean", "default": false}]
+  },
+  {
+    "name": "portfolio",
+    "code": "client/src/App.tsx",
+    "lang": "typescript"
+  }
 ]
