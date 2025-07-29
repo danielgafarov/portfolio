@@ -6,6 +6,7 @@ import About from "./components/about";
 import Home from "./components/home";
 import Project from "./components/project";
 import Projects from "./components/projects";
+import Test from "./components/test";
 
 function App() {
   return (

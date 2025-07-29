@@ -58,7 +58,7 @@ const getRepo = async (req, res) => {
       {
         owner: "danielgafarov",
         repo: id,
-        path: "README.md",
+        path: "README-de.md",
         headers: {
           "X-GitHub-Api-Version": "2022-11-28",
         },

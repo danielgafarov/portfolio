@@ -6,8 +6,23 @@
     "params": [{ "name": "genetic", "type": "boolean", "default": false}]
   },
   {
-    "name": "portfolio",
-    "code": "client/src/App.tsx",
-    "lang": "typescript"
+    "name": "feed_forward",
+    "code": "feed_forward.py",
+    "lang": "python"
+  },
+  {
+    "name": "gradient_descent",
+    "code": "Functions.h",
+    "lang": "cpp"
+  },
+  {
+    "name": "newtons_method",
+    "code": "main.cpp",
+    "lang": "cpp"
+  },
+  {
+    "name": "monte_carlo_method",
+    "code": "main.cpp",
+    "lang": "cpp"
   }
 ]

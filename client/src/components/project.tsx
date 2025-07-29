@@ -1,15 +1,16 @@
-import { useParams } from "react-router";
+import { Link, useParams } from "react-router";
 import SyntaxHighlighter from "react-syntax-highlighter";
 import { vs2015 } from "react-syntax-highlighter/dist/esm/styles/hljs";
 import { Buffer } from "buffer";
 import { Textarea } from "@/components/ui/textarea";
-import Markdown from "react-markdown";
+import Markdown from 'react-markdown'
 import useRepo from "@/hooks/useRepo";
 import { useEffect } from "react";
 import useExec from "@/hooks/useExec";
 import rehypeRaw from 'rehype-raw'
+import remarkGfm from 'remark-gfm'
 import axios from "axios";
-import { BookOpenText, Play } from "lucide-react";
+import { BookOpenText, Github, Play } from "lucide-react";
 import { Tabs, TabsList, TabsTrigger } from "./ui/tabs";
 import { TabsContent } from "@radix-ui/react-tabs";
 import { Checkbox } from "@/components/ui/checkbox"
@@ -52,7 +53,7 @@ const getDefaultValues = (params) => {
 const getComponentForParam = (type, field) => {
   switch (type) {
     case "boolean":
-      return <Checkbox checked={field.value}
+      return <Checkbox className="ml-1" checked={field.value}
         onCheckedChange={field.onChange}></Checkbox>
     case "string":
       return <Input {...field}></Input>
@@ -97,7 +98,7 @@ export default function Project() {
 
   if (repoIsLoading) return <div>Loading...</div>;
   if (repoError) return <div>Error: {axios.isAxiosError(repoError) ? repoError.response?.data.error : repoError.message}</div>;
-  const text = Buffer.from(repo.readme, "base64").toString()
+  const readme = Buffer.from(repo.readme, "base64").toString()
 
   return (
 
@@ -109,12 +110,12 @@ export default function Project() {
             <TabsTrigger value="code"><Play className="w-4 h-4 mr-2" />Code ausführen</TabsTrigger>
           </TabsList>
           <TabsContent value="description">
-            <Markdown rehypePlugins={[rehypeRaw]} className="pl-3">{text}</Markdown>
+            <Markdown rehypePlugins={[rehypeRaw]} className="pl-3">{readme}</Markdown>
           </TabsContent>
           <TabsContent value="code">
             <Form {...form}>
               <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
-                <div className="flex justify-center">
+                <div className="flex justify-center gap-2 mb-2">
                   {repo.params && (repo.params.map((param) =>
                   (<FormField
                     key={param.name}
@@ -132,7 +133,7 @@ export default function Project() {
                       </FormItem>
                     )}
                   />)))}
-                  <Button className="bg-green-500" type="submit"><Play className="w-4 h-4 mr-2" />Code ausführen</Button>
+                  <Button className="bg-green-500" type="submit"><Play className="w-4 h-4 mr-2" />Code ausführen</Button> <Link to="https://github.com/danielgafarov" target="_blank" rel="noopener noreferrer"> <Button type="button" className="bg-white"><Github className="w-4 h-4 mr-2" />gesamten Code ansehen</Button> </Link>
                 </div>
               </form>
             </Form>
