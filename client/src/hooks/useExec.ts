@@ -4,7 +4,7 @@ import axios from "axios";
 type ExecParams = {id : string, values: object}
 
 const getExec = async (params : ExecParams) => {
-  const response = await axios.get(`http://130.61.157.39:3000/api/exec`,{params: {params}});
+  const response = await axios.get(`https://130.61.157.39:8443/api/exec`,{params: {params}});
   return response.data.data;
 };
 

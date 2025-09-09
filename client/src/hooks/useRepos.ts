@@ -6,7 +6,7 @@ export type RepoInfoParam = {name: string; type: string; default: string | numbe
 export type RepoInfo = {name: string; code: string; lang: string; params?: RepoInfoParam[]; icon: IconName; description: string}
 
 const getRepos = async () => {
-  const response = await axios.get(`http://130.61.157.39:3000/api/repos`);
+  const response = await axios.get(`https://130.61.157.39:8443/api/repos`);
   return response.data as RepoInfo[];
 };
 
