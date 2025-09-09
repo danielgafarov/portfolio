@@ -20,6 +20,8 @@ const getRepos = async (req, res) => {
         "X-GitHub-Api-Version": "2022-11-28",
       },
     });
+    const event = new Date();
+    console.log("GitHub Api request at: " + event.toLocaleTimeString("de-DE") + " on " + event.toLocaleDateString("de-DE"));
     const whitelistedProjects = readJSON("/static/whitelistedProjects.json");
     whitelistedProjects.forEach(project => {
       project["description"] = repos.filter( (repo) => repo.name === project.name)[0].description
@@ -63,6 +65,8 @@ const getRepo = async (req, res) => {
         },
       }
     );
+    const event = new Date();
+    console.log("GitHub Api request at: " + event.toLocaleTimeString("de-DE") + " on " + event.toLocaleDateString("de-DE"));
     res.send({
       name: id,
       code: code.content,

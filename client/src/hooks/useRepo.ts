@@ -5,7 +5,7 @@ import { RepoInfoParam } from "./useRepos";
 type RepoDetail = {name: string, code: string; readme: string; lang: string; params?: RepoInfoParam[]} 
 
 const getRepo = async (id: string) => {
-  const response = await axios.get(`https://130.61.157.39:8443/api/repo/${id}`);
+  const response = await axios.get(`https://gafarov.de:8443/api/repo/${id}`);
   console.log(response.data)
   return response.data as RepoDetail;
 };
