@@ -11,46 +11,36 @@ import {
   SidebarMenuSub,
   SidebarMenuSubItem,
 } from "@/components/ui/sidebar";
-import useIconMap from "@/hooks/useIconMap";
 import useRepos from "@/hooks/useRepos";
 import { Collapsible, CollapsibleContent } from "@radix-ui/react-collapsible";
-import { FolderCode, Home, Scale } from "lucide-react";
 import { NavLink } from "react-router";
-import * as LucideIcons from "lucide-react";
+import { DynamicIcon, IconName } from "lucide-react/dynamic";
 
-const items = [
+type Item = {title: string; url: string; icon: IconName; projects?: Project[]} 
+type Project = {title: string; icon: IconName; id: string}
+const items:Item[] = [
   {
     title: "Home",
     url: "/",
-    icon: Home,
+    icon: "house",
   },
   {
     title: "Projekte",
     url: "/projects",
-    icon: FolderCode,
+    icon: "folder-code",
     projects: [],
   },
   {
     title: "Impressum",
     url: "/impressum",
-    icon: Scale,
+    icon: "scale",
   },
 ];
 
+
 export function AppSidebar() {
-  const { data } = useRepos();
-  const { data: iconMap } = useIconMap();
-  const projects =
-    data && iconMap
-      ? data?.map((repo) => {
-        return {
-          title: repo.name,
-          icon: LucideIcons[iconMap[repo.name] as keyof typeof LucideIcons],
-          id: repo.name,
-        };
-      })
-      : [];
-  items[1].projects = projects;
+  const { data: repos = []} = useRepos();
+  
   return (
     <Sidebar>
       <SidebarHeader>Daniel Gafarov</SidebarHeader>
@@ -63,19 +53,19 @@ export function AppSidebar() {
                   <SidebarMenuItem key={item.title}>
                     <SidebarMenuButton asChild>
                       <NavLink to={item.url}>
-                        <item.icon />
+                        <DynamicIcon name={item.icon}></DynamicIcon>
                         <span>{item.title}</span>
                       </NavLink>
                     </SidebarMenuButton>
-                    {item.projects && (
+                    {item.title == "Projekte" && (
                       <CollapsibleContent>
                         <SidebarMenuSub>
-                          {item.projects.map((project) => (
-                            <SidebarMenuSubItem key={project.title}>
+                          {repos.map((repo) => (
+                            <SidebarMenuSubItem key={repo.name}>
                               <SidebarMenuButton asChild>
-                                <NavLink to={`/projects/${project.id}`}>
-                                  <project.icon />
-                                  <span>{project.title}</span>
+                                <NavLink to={`/projects/${repo.name}`}>
+                                  <DynamicIcon name={repo.icon}></DynamicIcon>
+                                  <span>{repo.name}</span>
                                 </NavLink>
                               </SidebarMenuButton>
                             </SidebarMenuSubItem>

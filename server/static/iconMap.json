@@ -1,7 +1,0 @@
-{  
-    "8queens": "Spade",
-    "feed_forward": "BrainCircuit",
-    "gradient_descent": "ChartArea",
-    "newtons_method": "ChartSpline",
-    "monte_carlo_method": "Dices"
-}

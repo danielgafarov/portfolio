@@ -3,26 +3,31 @@
     "name": "8queens",
     "code": "8queens.py",
     "lang": "python",
-    "params": [{ "name": "genetic", "type": "boolean", "default": false}]
+    "params": [{ "name": "genetic", "type": "boolean", "default": false}],
+    "icon": "spade"
   },
   {
     "name": "feed_forward",
     "code": "feed_forward.py",
-    "lang": "python"
+    "lang": "python",
+    "icon": "brain-circuit"
   },
   {
     "name": "gradient_descent",
     "code": "Functions.h",
-    "lang": "cpp"
+    "lang": "cpp",
+    "icon": "chart-area"
   },
   {
     "name": "newtons_method",
     "code": "main.cpp",
-    "lang": "cpp"
+    "lang": "cpp",
+    "icon": "chart-spline"
   },
   {
     "name": "monte_carlo_method",
     "code": "main.cpp",
-    "lang": "cpp"
+    "lang": "cpp",
+    "icon": "dices"
   }
 ]

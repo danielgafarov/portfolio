@@ -2,21 +2,16 @@ require('dotenv').config({ path: ".env.local", override: true })
 const express = require("express");
 var cors = require("cors");
 const app = express();
-var whitelist = ["http://localhost:5173"];
 const repoRoutes = require('./routes/repoRoutes')
 const configRoutes = require('./routes/configRoutes')
 const executionRoutes = require('./routes/executionRoutes')
 
-var corsOptions = {
-  origin: function (origin, callback) {
-    if (whitelist.indexOf(origin) !== -1) {
-      callback(null, true);
-    } else {
-      callback(new Error("Not allowed by CORS"));
-    }
-  },
+const corsOptions = {
+  origin: 'https://frfh467udihg.objectstorage.eu-frankfurt-1.oci.customer-oci.com/',
+  optionsSuccessStatus: 200
 };
-app.use(cors());
+
+app.use(cors(corsOptions));
 app.use("/api",repoRoutes)
 app.use("/api",configRoutes)
 app.use("/api",executionRoutes)
