@@ -7,7 +7,6 @@ import Markdown from 'react-markdown'
 import useRepo from "@/hooks/useRepo";
 import { useEffect } from "react";
 import useExec from "@/hooks/useExec";
-import rehypeRaw from 'rehype-raw'
 import axios from "axios";
 import { BookOpenText, Github, Play } from "lucide-react";
 import { Tabs, TabsList, TabsTrigger } from "./ui/tabs";
@@ -28,6 +27,7 @@ import {
 } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
 import { RepoInfoParam } from "@/hooks/useRepos";
+import EightQueens from "./8queens";
 
 
 
@@ -74,14 +74,16 @@ const createShape = (params: RepoInfoParam[]) => {
 
 export default function Project() {
   const project = useParams();
-  
-
   const { data: repo, error: repoError, isLoading: repoIsLoading } = useRepo(project.id);
   const { data: result, mutate: execute, isPending: execIsLoading, reset } = useExec();
   const formSchema = repo?.params ? z.object(createShape(repo.params)) : z.object({})
   const form = useForm({
     resolver: zodResolver(formSchema),
   })
+  const components = {
+    "8queens": EightQueens,
+  }
+  const ParamExplanation = project.id && components[project.id as keyof typeof components] || (() => <></>)
 
   function onSubmit(values: z.infer<typeof formSchema>) {
     if(!project.id)
@@ -99,8 +101,7 @@ export default function Project() {
 
   if (repoIsLoading) return <div>Loading...</div>;
   if (repoError) return <div>Error: {axios.isAxiosError(repoError) ? repoError.response?.data.error : repoError.message}</div>;
-  const readme = Buffer.from(repo!.readme, "base64").toString()
-
+  const readme = repo && Buffer.from(repo.readme, "base64").toString()
   return (
 
     <>
@@ -111,11 +112,12 @@ export default function Project() {
             <TabsTrigger value="code"><Play className="w-4 h-4 mr-2" />Code ausführen</TabsTrigger>
           </TabsList>
           <TabsContent value="description">
-            <Markdown rehypePlugins={[rehypeRaw]} className="pl-3">{readme}</Markdown>
+            <Markdown className="pl-3 markdown">{readme}</Markdown>
           </TabsContent>
           <TabsContent value="code">
+            <ParamExplanation></ParamExplanation>
             <Form {...form}>
-              <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
+              <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8 mt-2">
                 <div className="flex justify-center gap-2 mb-2">
                   {repo?.params && (repo.params.map((param) =>
                   (<FormField

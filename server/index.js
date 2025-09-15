@@ -9,7 +9,7 @@ const configRoutes = require('./routes/configRoutes')
 const executionRoutes = require('./routes/executionRoutes')
 
 const corsOptions = {
-  origin: ['https://gafarov.de','https:\/\/\w{3}\.gafarov\.de$'],
+  origin: ['https://gafarov.de',/\.gafarov\.de$/],
   optionsSuccessStatus: 200
 };
 

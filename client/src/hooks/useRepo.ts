@@ -6,7 +6,6 @@ type RepoDetail = {name: string, code: string; readme: string; lang: string; par
 
 const getRepo = async (id: string) => {
   const response = await axios.get(`https://gafarov.de:8443/api/repo/${id}`);
-  console.log(response.data)
   return response.data as RepoDetail;
 };
 
