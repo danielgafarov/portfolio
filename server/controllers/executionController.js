@@ -10,7 +10,6 @@ const getExec = async (req, res) => {
     values.push(req.query.params.values[x])
   const id = req.query.params.id
   const child = spawn(entryPoints[id].command, [entryPoints[id].file,values]);
-  console.log(child)
   let data = "";
   for await (const chunk of child.stdout) {
     data += chunk;
