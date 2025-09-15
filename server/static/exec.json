@@ -1,22 +1,22 @@
 {
     "8queens": {
-        "file": "8queens.py",
+        "file": "./controllers/programs/8queens/8queens.py",
         "command": "python3"
     },
     "feed_forward": {
-        "file": "exec.sh",
+        "file": "./controllers/programs/feed_forward/exec.sh",
         "command": "bash"
     },
     "gradient_descent": {
         "file": "",
-        "command": "controllers/programs/gradient_descent/gradient_descent"
+        "command": "./controllers/programs/gradient_descent/gradient_descent"
     },
     "newtons_method": {
         "file": "",
-        "command": "controllers/programs/newtons_method/newtons_method"
+        "command": "./controllers/programs/newtons_method/newtons_method"
     },
     "monte_carlo_method": {
         "file": "",
-        "command": "controllers/programs/monte_carlo_method/monte_carlo_method"
+        "command": "./controllers/programs/monte_carlo_method/monte_carlo_method"
     }
 }

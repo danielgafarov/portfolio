@@ -134,3 +134,4 @@ dist
 
 #Prisma
 /server/generated/prisma/
+index.js
