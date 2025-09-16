@@ -1,0 +1,14 @@
+[
+  {
+    "name": "gradient_descent",
+    "code": "Functions.h",
+    "lang": "cpp",
+    "icon": "chart-area"
+  },
+  {
+    "name": "newtons_method",
+    "code": "main.cpp",
+    "lang": "cpp",
+    "icon": "chart-spline"
+  }
+]

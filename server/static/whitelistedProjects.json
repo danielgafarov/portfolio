@@ -3,7 +3,7 @@
     "name": "8queens",
     "code": "8queens.py",
     "lang": "python",
-    "params": [{ "name": "genetic", "type": "boolean", "default": false}],
+    "params": [{ "name": "Genetic", "type": "boolean", "default": false}],
     "icon": "spade"
   },
   {
@@ -13,21 +13,10 @@
     "icon": "brain-circuit"
   },
   {
-    "name": "gradient_descent",
-    "code": "Functions.h",
-    "lang": "cpp",
-    "icon": "chart-area"
-  },
-  {
-    "name": "newtons_method",
-    "code": "main.cpp",
-    "lang": "cpp",
-    "icon": "chart-spline"
-  },
-  {
     "name": "monte_carlo_method",
     "code": "main.cpp",
     "lang": "cpp",
+    "params": [{"name": "Richtige", "type": "number", "default": 3},{"name": "Gezogene Kugeln", "type": "number", "default": 6},{"name": "Kugeln ingesamt", "type": "number", "default": 49},{"name": "Tippzettel", "type": "string", "default": "123456"}],
     "icon": "dices"
   }
 ]

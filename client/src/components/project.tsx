@@ -38,7 +38,7 @@ const getDataTypeForParam = (type: string) => {
     case "string":
       return z.string()
     case "number":
-      return z.number()
+      return z.string()
     default:
       return z.any()
   }
