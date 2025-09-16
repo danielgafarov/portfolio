@@ -27,7 +27,8 @@ app.listen(8080, () => {
   console.log(`Example app listening on port 8080`);
 });
 
-https
+if(process.argv[2] != "nossl") {
+  https
   .createServer(
     {
       key: fs.readFileSync("/etc/letsencrypt/live/gafarov.de/privkey.pem"),
@@ -36,3 +37,4 @@ https
     app
   )
   .listen(8443)
+}

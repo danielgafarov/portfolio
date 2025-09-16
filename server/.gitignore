@@ -1,6 +1,6 @@
 #programs
 /controllers/programs/*/
-
+index.js
 # Logs
 logs
 *.log
