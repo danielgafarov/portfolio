@@ -28,6 +28,8 @@ import {
 import { Input } from "@/components/ui/input"
 import { RepoInfoParam } from "@/hooks/useRepos";
 import EightQueens from "./8queens";
+import FeedForward from "./feedforward";
+import MonteCarloMethod from "./montecarlomethod";
 
 
 
@@ -65,7 +67,7 @@ const getComponentForParam = (type: string, field: ControllerRenderProps) => {
 }
 
 const createShape = (params: RepoInfoParam[]) => {
-  const shape : ZodRawShape = {}
+  const shape: ZodRawShape = {}
   for (const param of params) {
     shape[param.name] = getDataTypeForParam(param.type)
   }
@@ -82,13 +84,15 @@ export default function Project() {
   })
   const components = {
     "8queens": EightQueens,
+    "feed_forward": FeedForward,
+    "monte_carlo_method": MonteCarloMethod
   }
   const ParamExplanation = project.id && components[project.id as keyof typeof components] || (() => <></>)
 
   function onSubmit(values: z.infer<typeof formSchema>) {
-    if(!project.id)
+    if (!project.id)
       return
-    execute({id : project.id, values})
+    execute({ id: project.id, values })
   }
 
   useEffect(() => {
@@ -114,7 +118,7 @@ export default function Project() {
           <TabsContent value="description">
             <Markdown className="pl-3 markdown">{readme}</Markdown>
           </TabsContent>
-          <TabsContent value="code">
+          <TabsContent value="code" className="pl-3">
             <ParamExplanation></ParamExplanation>
             <Form {...form}>
               <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8 mt-2">
@@ -138,11 +142,13 @@ export default function Project() {
                       </FormItem>
                     )}
                   />)))}
-                  <Button className="bg-green-500" type="submit"><Play className="w-4 h-4 mr-2" />Code ausführen</Button> <Link to={`https://github.com/danielgafarov/${project.id}`} target="_blank" rel="noopener noreferrer"> <Button type="button" className="bg-white"><Github className="w-4 h-4 mr-2" />gesamten Code ansehen</Button> </Link>
+                  <div className="content-center">
+                    <Button className="bg-green-500" type="submit"><Play className="w-4 h-4 mr-2" />Code ausführen</Button> <Link to={`https://github.com/danielgafarov/${project.id}`} target="_blank" rel="noopener noreferrer"> <Button type="button" className="bg-white"><Github className="w-4 h-4 mr-2" />gesamten Code ansehen</Button> </Link>
+                  </div>
                 </div>
               </form>
             </Form>
-            <div className="pl-2 flex gap-2">
+            <div className="flex gap-2 pr-5">
               <SyntaxHighlighter
                 className="rounded-md"
                 style={vs2015}
@@ -152,7 +158,7 @@ export default function Project() {
               >
                 {repo ? Buffer.from(repo.code, "base64").toString() : "Code loading..."}
               </SyntaxHighlighter>
-              <Textarea style={{ fontSize: "16px", letterSpacing: "3px" }} value={execIsLoading ? "Loading..." : result} disabled></Textarea>
+              <Textarea className='max-h-[700px]' style={{ fontSize: "16px", letterSpacing: "3px" }} value={execIsLoading ? "Loading..." : result} disabled></Textarea>
             </div>
           </TabsContent>
         </div >
