@@ -29,12 +29,7 @@ const items:Item[] = [
     url: "/projects",
     icon: "folder-code",
     projects: [],
-  },
-  {
-    title: "Impressum",
-    url: "/impressum",
-    icon: "scale",
-  },
+  }
 ];
 
 
