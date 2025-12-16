@@ -1,5 +1,5 @@
 import { Link, NavLink } from "react-router";
-import { FolderCode, Scale, Github, } from "lucide-react";
+import { FolderCode, Github, } from "lucide-react";
 import { Card, CardHeader } from "./ui/card";
 
 export default function Home() {
