@@ -16,7 +16,7 @@ export default function Home() {
       target: "target='_blank'",
       rel: "noopener noreferrer",
       icon: Github
-    },
+    }
     /*{
       title: "LinkedIn",
       url: "/linkedin",
@@ -27,11 +27,6 @@ export default function Home() {
       url: "/xing",
       icon: Scale
     },*/
-    {
-      title: "Impressum",
-      url: "/Impressum",
-      icon: Scale
-    }
   ];
   return (
     <div className="flex flex-col text-center place-content-center gap-5">
